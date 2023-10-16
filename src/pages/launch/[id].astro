@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getLaunchById } from '../../services/spacex';
+import Layout from '../../layouts/Layout.astro';
+import LaunchCard from '../../components/LaunchCard.astro';
+
+/**to run in the server with the output configured as hyprid ,
+ * therfore prerender is set to false,
+ * to run in the client, prerender is set to true.
+ * */
+export const prerender = false;
+const { id } = Astro.params
+let launch
+if (id) {
+    launch = await getLaunchById(id)
+}
+
+---
+
+<Layout title="Space X launches">
+    <main>
+        <LaunchCard
+            id={launch?.id || ''}
+            name={launch?.name || ''}
+            img={launch?.links.patch.small || ''}
+            success={launch?.success || false}
+            flightNumber={launch?.flight_number || 0}
+            details={launch?.details || ''}/>
+    </main>
+</Layout>

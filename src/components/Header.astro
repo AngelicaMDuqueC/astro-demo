@@ -1,0 +1,36 @@
+---
+import Counter from "./Counter";
+import HeaderButton from "./HeaderButton.astro";
+const { title, supTitle } = Astro.props
+---
+
+<header class="py-8 px-4 mx-auto max-w-xl lg:py-16" >
+<div class="mx-auto mb-8 lg:mb-16 text-center">
+    <h2 class="mb-4 text-4xl font-bold tracking-tight text-white ">
+        {title}
+    </h2>
+    <p class="font-light text-gray-400 sm:text-xl dark:text-gray-400">{supTitle}</p>
+</div>
+    <nav class="flex flex-col gap-4 items-center justify-between w-full text-center md:flex-row">
+       <HeaderButton href="/">
+        <svg slot="before" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                <path d="M10 12h4v4h-4z" />
+            </svg>
+            Home
+       </HeaderButton>
+       <HeaderButton href="/about">
+        <svg slot="before" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-indent-decrease" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M20 6l-7 0" />
+                <path d="M20 12l-9 0" />
+                <path d="M20 18l-7 0" />
+                <path d="M8 8l-4 4l4 4" />
+            </svg>
+            About
+        </HeaderButton>
+        <Counter client:visible transition:persist/>
+    </nav>
+</header>

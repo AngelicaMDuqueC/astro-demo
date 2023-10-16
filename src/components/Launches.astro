@@ -1,0 +1,21 @@
+---
+import {getLaunches} from '../services/spacex';
+import LaunchCard from './LaunchCard.astro';
+
+const launches = await getLaunches()
+---
+
+
+<div class="bg-[#13151a] min-h-screen pb-32 grid grid-cols-1  gap-8 sm:grid-cols-2 lg:grid-cols-3 ">
+    {
+        launches.map((launch) => (
+            <LaunchCard
+                id={launch.id}
+                name={launch.name}
+                img={launch.links.patch.small}
+                success={launch.success}
+                flightNumber={launch.flight_number}
+                details={launch.details || ''} />
+        ))
+    }
+</div>
